@@ -14,6 +14,7 @@ public class BariProjectile : ProjectileObj
     protected override void Move()
     {
         moveSpeed += Time.deltaTime;
+        transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
         transform.position = Vector3.Lerp(transform.position, target.position, nowSpeed * Time.deltaTime);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +22,8 @@ public class BariProjectile : ProjectileObj
         if(collision.gameObject.layer == 7)
         {
             collision.GetComponent<IHittable>().OnDamage(origin.atk, 10, origin);
+            Managers.Pool.PoolManaging("HitEffect", collision.transform.position, Quaternion.identity);
+            Managers.Pool.Push(poolable);
         }
     }
 }

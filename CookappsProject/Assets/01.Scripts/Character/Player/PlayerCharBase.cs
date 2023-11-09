@@ -45,6 +45,7 @@ public class PlayerCharBase : CharBase
 
         float dist = 100;
 
+        targetObject = null;
         for (int i = 0; i < TeamManager.Instance.enemyTeamList.Count; i++)
         {
             if (TeamManager.Instance.enemyTeamList[i].IsDead) continue;

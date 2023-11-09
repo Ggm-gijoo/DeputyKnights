@@ -30,6 +30,10 @@ MonoBehaviour:
     m_Address: BariAttack
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ab6bc118fb4a24e4ea0c6463f259ef1b
+    m_Address: HitEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9c4cf7701d3a4e243a480196ef1b0071, type: 2}
   m_SchemaSet:

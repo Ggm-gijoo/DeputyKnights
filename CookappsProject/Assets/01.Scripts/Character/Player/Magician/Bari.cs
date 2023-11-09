@@ -17,7 +17,7 @@ public class Bari : PlayerCharBase
 
     private IEnumerator OnAttack()
     {
-        BariProjectile clone = Managers.Pool.PoolManaging("BariAttack", transform.position, Quaternion.identity).GetComponent<BariProjectile>();
+        BariProjectile clone = Managers.Pool.PoolManaging("BariAttack", transform.position, Quaternion.AngleAxis(-90,Vector2.right)).GetComponent<BariProjectile>();
         clone.target = targetObject.transform;
         clone.origin = this;
 

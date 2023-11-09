@@ -12,7 +12,7 @@ public class ProjectileObj : MonoBehaviour
     public CharBase origin;
     public Transform target;
 
-    private Poolable poolable = null;
+    protected Poolable poolable = null;
 
     private void Awake()
     {

@@ -70,7 +70,6 @@ public class CharBase : MonoBehaviour, IHittable
     }
     private void SetStatus()
     {
-        job = charSO.Job;
         hp = charSO.Hp;
         atk = charSO.Atk;
         spd = charSO.Spd;
@@ -101,7 +100,6 @@ public class CharBase : MonoBehaviour, IHittable
 
         if (from != null)
         {
-            SetTarget(from);
             from.dealStack += damage;
             totalDealStack += damage;
 
@@ -123,7 +121,10 @@ public class CharBase : MonoBehaviour, IHittable
         while (!IsDead)
         {
             yield return null;
+            rigid.velocity = Vector2.zero;
+
             if (isAct) continue;
+            if (targetObject == null) continue;
 
             float targetDist = Vector2.Distance(targetObject.transform.position, transform.position);
 
@@ -179,10 +180,10 @@ public class CharBase : MonoBehaviour, IHittable
 
     private void RestrictionPos()
     {
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -13.5f, 13.5f), Mathf.Clamp(transform.position.y, -3f, 3f));
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -10f, 10f), Mathf.Clamp(transform.position.y, -3f, 3f));
     }
     private bool IsCharacterInEdge()
     {
-        return Mathf.Abs(transform.position.x) > 13f || Mathf.Abs(transform.position.y) > 2.5f;
+        return Mathf.Abs(transform.position.x) > 9.5f || Mathf.Abs(transform.position.y) > 2.5f;
     }
 }

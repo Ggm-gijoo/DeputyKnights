@@ -198,7 +198,7 @@ MonoBehaviour:
   targetObject: {fileID: 0}
   charSO: {fileID: 11400000, guid: 07cd4fc6929b8214f881f7baaf643bdf, type: 2}
   attackDistance: 10
-  escapeDistance: 2
+  escapeDistance: 4
   idleClip: {fileID: 0}
   moveClip: {fileID: 0}
   attackClip: {fileID: 0}

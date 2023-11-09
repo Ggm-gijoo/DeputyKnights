@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638351220672578776
-    m_Hash: 2874614887
+      ticks: 638351447639796453
+    m_Hash: 1233884942
   m_LockFileStatus:
     m_FilePath: C:/Users/USER/Documents/GitHub/CookAppsProject/CookappsProject/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638351220672678174
-    m_Hash: 2025461980
+      ticks: 638351447639886286
+    m_Hash: 2602639625
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -22,6 +22,68 @@ m_LocalPackages:
 m_ProjectPath: C:/Users/USER/Documents/GitHub/CookAppsProject/CookappsProject/Packages
 m_EditorVersion: 2021.3.15f1 (e8e88683f834)
 m_ResolvedPackages:
+- packageId: com.beetlecircus.serializabledictionary@0.1.2-preview.4
+  testable: 0
+  isDirectDependency: 1
+  version: 0.1.2-preview.4
+  source: 1
+  resolvedPath: C:\Users\USER\Documents\GitHub\CookAppsProject\CookappsProject\Library\PackageCache\com.beetlecircus.serializabledictionary@0.1.2-preview.4
+  assetPath: Packages/com.beetlecircus.serializabledictionary
+  name: com.beetlecircus.serializabledictionary
+  displayName: SerializableDictionary
+  author:
+    name: Fredrik Ludvigsen
+    email: post@fredrik.ludvigsen.name
+    url: 
+  category: 
+  type: 
+  description: Dictionary framework developed by BeetleCircus
+  status: 0
+  errors: []
+  versions:
+    all:
+    - 0.1.0
+    - 0.1.1
+    - 0.1.2-preview.1
+    - 0.1.2-preview.2
+    - 0.1.2-preview.3
+    - 0.1.2-preview.4
+    compatible:
+    - 0.1.0
+    - 0.1.1
+    - 0.1.2-preview.1
+    - 0.1.2-preview.2
+    - 0.1.2-preview.3
+    - 0.1.2-preview.4
+    verified: 
+  dependencies: []
+  resolvedDependencies: []
+  keywords:
+  - collections
+  - serializable
+  - dictionary
+  registry:
+    id: scoped:project:Rain Office
+    name: Rain Office
+    url: https://office.rain-games.com:4873
+    scopes:
+    - com.beetlecircus
+    isDefault: 0
+    capabilities: 0
+    configSource: 4
+  hideInEditor: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 637575488801640000
+  documentationUrl: 
+  hasRepository: 0
+  repository:
+    type: 
+    url: 
+    revision: 
+    path: 
+  unityLifecycle:
+    version: 
+    nextVersion: 
 - packageId: com.unity.addressables@1.19.19
   testable: 0
   isDirectDependency: 1
