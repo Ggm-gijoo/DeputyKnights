@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 87712f12579086e4885cd2cb850f85ec
+  m_SerializeEntries:
+  - m_GUID: c12f9de20232b6b41b63250712c16d31
+    m_Address: BasicWarrior
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Player
+  - m_GUID: d52591951829e4a46b94ee3764385ea4
+    m_Address: DeathEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9c4cf7701d3a4e243a480196ef1b0071, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 634938d29cea46b4b911a5ceab46122e, type: 2}
+    - {fileID: 11400000, guid: b538344f52a250a4a98231d9c4892e36, type: 2}
