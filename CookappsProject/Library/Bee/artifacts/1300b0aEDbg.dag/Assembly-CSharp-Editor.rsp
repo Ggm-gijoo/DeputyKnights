@@ -415,8 +415,6 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.UI.ref.dll"
--analyzer:"Assets/99.Etc/Plugins/Demigiant/DOTween/DOTween.dll"
--analyzer:"Assets/99.Etc/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll"
 "Assets/MoveToTrailUV/Editor/MoveToTrailUVEditor.cs"
 -langversion:9.0
 

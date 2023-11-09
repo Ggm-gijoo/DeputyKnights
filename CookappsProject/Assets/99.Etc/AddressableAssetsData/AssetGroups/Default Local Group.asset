@@ -26,6 +26,10 @@ MonoBehaviour:
     m_Address: DeathEffect
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 0a0d00a76b46a1a488dd7c0d731854fc
+    m_Address: BariAttack
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9c4cf7701d3a4e243a480196ef1b0071, type: 2}
   m_SchemaSet:

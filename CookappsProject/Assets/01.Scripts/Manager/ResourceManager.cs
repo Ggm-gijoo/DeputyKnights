@@ -42,10 +42,6 @@ public class ResourceManager
     /// </summary>
     public GameObject Instantiate(string path, Transform parent = null)
     {
-        if (!path.Contains("Assets/") && !path.Contains(".prefab"))
-        {
-            path = $"Assets/{path}.prefab";
-        }
         GameObject prefab = Load<GameObject>(path);
         if (prefab == null)
         {

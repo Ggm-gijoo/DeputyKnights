@@ -31,7 +31,7 @@ public class SkillIcon : MonoBehaviour
 
     public bool isCoolDowned() => nowCooltime <= 0;
 
-    private IEnumerator CoolDown(float initCoolTime, float coolDownSpd)
+    public IEnumerator CoolDown(float initCoolTime, float coolDownSpd)
     {
         nowCooltime = initCoolTime;
         coolDownText.gameObject.SetActive(true);

@@ -25,7 +25,6 @@ public class CharBase : MonoBehaviour, IHittable
     protected Animator anim;
     protected AnimatorOverrideController overrideController;
 
-    protected CharacterJob job;
     [HideInInspector] public float hp;
     [HideInInspector] public float atk;
     [HideInInspector] public float spd;
@@ -115,7 +114,7 @@ public class CharBase : MonoBehaviour, IHittable
         {
             IsDead = true;
             TeamManager.Instance.onDieEvent.Invoke();
-            gameObject.SetActive(false);
+            StartCoroutine(OnDie());
         }
     }
 
@@ -169,8 +168,6 @@ public class CharBase : MonoBehaviour, IHittable
 
     protected virtual IEnumerator OnDie()
     {
-        yield return new WaitUntil(() => IsDead);
-        
         Managers.Pool.PoolManaging("DeathEffect", transform.position, Quaternion.Euler(Vector3.right * -90));
         yield return null;
 

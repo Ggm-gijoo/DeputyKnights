@@ -362,8 +362,6 @@
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1300b0aEDbg.dag/UnityEngine.UI.ref.dll"
--analyzer:"Assets/99.Etc/Plugins/Demigiant/DOTween/DOTween.dll"
--analyzer:"Assets/99.Etc/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll"
 "Library/PackageCache/com.unity.2d.animation@7.0.9/Editor/Analytics.cs"
 "Library/PackageCache/com.unity.2d.animation@7.0.9/Editor/AssemblyInfo.cs"
 "Library/PackageCache/com.unity.2d.animation@7.0.9/Editor/ClipperLib/clipper.cs"

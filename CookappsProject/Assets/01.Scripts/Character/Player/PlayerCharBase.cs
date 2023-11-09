@@ -10,13 +10,20 @@ public class PlayerCharBase : CharBase
     [HideInInspector] public float skillCool;
     [HideInInspector] public float coolDownSpeed = 1f;
 
-    protected static Dictionary<CharacterJob, int> synergyDict = new Dictionary<CharacterJob, int>();
+    protected CharacterJob job;
+    protected CharacterElemental elemental;
+
+    protected static Dictionary<CharacterJob, int> jobSynergyDict = new Dictionary<CharacterJob, int>();
+    protected static Dictionary<CharacterElemental, int> elementalSynergyDict = new Dictionary<CharacterElemental, int>();
 
     protected override void Init()
     {
         isPlayer = true;
 
         base.Init();
+
+        job = charSO.Job;
+        elemental = charSO.Elemental;
 
         charIcon = charSO.CharIcon;
         skillCool = charSO.SkillCool;
@@ -26,13 +33,10 @@ public class PlayerCharBase : CharBase
 
     private void SetSynergy()
     {
-        if (synergyDict.ContainsKey(job))
-        {
-            synergyDict[job]++;
-            Synergy();
-        }
+        if (jobSynergyDict.ContainsKey(job))
+            jobSynergyDict[job]++;
         else
-            synergyDict.Add(job, 1);
+            jobSynergyDict.Add(job, 1);
     }
 
     protected override void ResetTarget()
@@ -55,5 +59,40 @@ public class PlayerCharBase : CharBase
     }
 
     public virtual void Skill() { }
-    protected virtual void Synergy() { }
+    protected void Synergy() 
+    {
+        switch(job)
+        {
+            case CharacterJob.Warrior:
+                for (int i = 0; i < TeamManager.Instance.playerTeamList.Count; i++)
+                    TeamManager.Instance.playerTeamList[i].atk += TeamManager.Instance.playerTeamList[i].charSO.Atk * 0.1f;
+                break;
+            case CharacterJob.Magician:
+                for (int i = 0; i < TeamManager.Instance.playerTeamList.Count; i++)
+                    TeamManager.Instance.playerTeamList[i].coolDownSpeed += 0.25f;
+                break;
+            case CharacterJob.Supporter:
+                break;
+            case CharacterJob.Special:
+                break;
+        }
+
+        switch(elemental)
+        {
+            case CharacterElemental.Light:
+                break;
+            case CharacterElemental.Dark:
+                break;
+            case CharacterElemental.Fire:
+                break;
+            case CharacterElemental.Water:
+                break;
+            case CharacterElemental.Ground:
+                break;
+            case CharacterElemental.Arcane:
+                break;
+            default:
+                break;
+        }
+    }
 }

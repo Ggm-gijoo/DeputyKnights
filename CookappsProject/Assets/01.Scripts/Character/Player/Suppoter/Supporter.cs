@@ -8,9 +8,5 @@ public class Supporter : PlayerCharBase
     protected override void Attack()
     {
     }
-    protected override void Synergy()
-    {
-
-    }
 
 }

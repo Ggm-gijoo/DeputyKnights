@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum Team
-{
-    player,
-    enemy,
-}
-
 public class TeamManager : MonoSingleton<TeamManager>
 {
     public List<PlayerCharBase> playerTeamList = new List<PlayerCharBase>();
@@ -51,6 +45,10 @@ public class TeamManager : MonoSingleton<TeamManager>
         {
             enemyTeamList[i].SetTarget(playerTeamList[i % playerTeamList.Count]);
         }
+    }
+    public void OnSynergy()
+    {
+
     }
     public void CheckAllDie()
     {

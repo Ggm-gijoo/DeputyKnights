@@ -49,11 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moveObject: {fileID: 4899216698455208959}
   m_shaderPropertyName: _MoveToMaterialUV
-  m_shaderPropertyID: 1303
+  m_shaderPropertyID: 746
   m_materialData:
   - m_trailRenderer: {fileID: 7851834453231688957}
     m_uvTiling: {x: 0.15, y: 1}
-    m_move: 0
+    m_move: 0.000049114227
 --- !u!199 &2013891860542223561
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4922,7 +4922,7 @@ TrailRenderer:
   m_Time: 1.3
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 2
+    widthMultiplier: 1.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -4995,6 +4995,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2208175287503854787}
   - component: {fileID: 2208175287503854786}
+  - component: {fileID: -3691701109275381476}
+  - component: {fileID: 8538739270291940713}
+  - component: {fileID: -3242268278538464111}
   m_Layer: 0
   m_Name: Bari_AttackFX
   m_TagString: Untagged
@@ -5011,7 +5014,7 @@ Transform:
   m_GameObject: {fileID: 2208175287503854785}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 5.6, y: 1.0993588, z: 1.8}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4899216698455208959}
@@ -5070,3 +5073,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3691701109275381476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208175287503854785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53618e0cea990f9408428ff9c743506f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0
+  PushTime: 0
+--- !u!114 &8538739270291940713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208175287503854785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6063c98e8d74e9646968c278170f9c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  moveTime: 3
+  origin: {fileID: 0}
+  target: {fileID: 0}
+--- !u!58 &-3242268278538464111
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208175287503854785}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1

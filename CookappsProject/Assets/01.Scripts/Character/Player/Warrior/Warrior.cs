@@ -18,16 +18,12 @@ public class Warrior : PlayerCharBase
         Vector2 dir = (targetObject.transform.position - transform.position).normalized;
         targetObject.OnDamage(atk, 10, this);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         isAct = false;
     }
 
     public override void Skill()
     {
 
-    }
-    protected override void Synergy()
-    {
-        //n명만큼 시작 스킬 쿨타임 감소
     }
 }

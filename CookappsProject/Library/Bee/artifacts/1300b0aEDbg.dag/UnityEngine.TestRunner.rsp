@@ -329,8 +329,6 @@
 -r:"C:/Users/USER/Documents/2021.3.15f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll"
 -r:"C:/Users/USER/Documents/2021.3.15f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:"C:/Users/USER/Documents/GitHub/CookAppsProject/CookappsProject/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
--analyzer:"Assets/99.Etc/Plugins/Demigiant/DOTween/DOTween.dll"
--analyzer:"Assets/99.Etc/Plugins/Demigiant/DOTween/Editor/DOTweenEditor.dll"
 "Library/PackageCache/com.unity.test-framework@1.1.31/UnityEngine.TestRunner/AssemblyInfo.cs"
 "Library/PackageCache/com.unity.test-framework@1.1.31/UnityEngine.TestRunner/Assertions/AllocatingGCMemoryConstraint.cs"
 "Library/PackageCache/com.unity.test-framework@1.1.31/UnityEngine.TestRunner/Assertions/ConstraintsExtensions.cs"

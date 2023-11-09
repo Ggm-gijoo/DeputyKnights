@@ -208,9 +208,9 @@ MonoBehaviour:
   charSO: {fileID: 11400000, guid: c63817517f4b5aa44b14ba8e6f65c6c3, type: 2}
   attackDistance: 2
   escapeDistance: 0
-  idleClip: {fileID: 0}
-  moveClip: {fileID: 0}
-  attackClip: {fileID: 0}
+  idleClip: {fileID: 7400000, guid: 04be715df31c2ba4bbe3a15acb1099b7, type: 2}
+  moveClip: {fileID: 7400000, guid: 04be715df31c2ba4bbe3a15acb1099b7, type: 2}
+  attackClip: {fileID: 7400000, guid: b3447f45388dab942bc9894977da4bc2, type: 2}
   hp: 0
   atk: 0
   spd: 0

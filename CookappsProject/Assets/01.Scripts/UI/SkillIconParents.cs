@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillIconParents : MonoBehaviour
+public class SkillIconParents : MonoSingleton<SkillIconParents>
 {
     [SerializeField] private GameObject skillIconPrefab;
     public List<SkillIcon> skillIcons = new List<SkillIcon>();
@@ -26,7 +26,7 @@ public class SkillIconParents : MonoBehaviour
             skillIcons[i].SetSkillIcon(i);
 
             int idx = i;
-            skillIcons[i].skillBtn.onClick.AddListener(() => skillIcons[idx].OnSkillActive(idx,
+            skillIcons[idx].skillBtn.onClick.AddListener(() => skillIcons[idx].OnSkillActive(idx,
                 TeamManager.Instance.playerTeamList[idx].skillCool, TeamManager.Instance.playerTeamList[idx].coolDownSpeed));
         }
     }
