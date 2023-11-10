@@ -73,7 +73,7 @@ public class PoolManager
 
             return poolable;
         }
-        public Poolable Pop(Vector3 parent) //풀에서 꺼낼 때
+        public Poolable Pop(Vector3 parent, Quaternion rotation) //풀에서 꺼낼 때
         {
             Poolable poolable;
 
@@ -86,7 +86,8 @@ public class PoolManager
                 poolable.transform.SetParent(null);
             }
             poolable.gameObject.SetActive(true);
-             poolable.transform.position = parent;
+            poolable.transform.position = parent;
+            poolable.transform.rotation = rotation;
             poolable.IsUsing = true;
 
             return poolable;
@@ -138,14 +139,14 @@ public class PoolManager
         }
         return _pool[obj.name].Pop(parent);
     }
-    public Poolable Pop(GameObject obj, Vector3 pos)
+    public Poolable Pop(GameObject obj, Vector3 pos, Quaternion rot)
     {
         if (_pool.ContainsKey(obj.name) == false)
         {
             CreatePool(obj);
         }
 
-        return _pool[obj.name].Pop(pos);
+        return _pool[obj.name].Pop(pos, rot);
     }
     public GameObject GetObject(string name)
     {

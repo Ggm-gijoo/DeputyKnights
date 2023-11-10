@@ -6,4 +6,5 @@ using UnityEngine;
 public class StageSO : ScriptableObject
 {
     [SerializeField] private List<CharacterSO> enemyList;
+    public List<CharacterSO> EnemyList { get { return enemyList; } }
 }

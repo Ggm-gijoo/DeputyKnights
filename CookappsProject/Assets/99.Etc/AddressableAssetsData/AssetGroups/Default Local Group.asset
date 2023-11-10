@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 87712f12579086e4885cd2cb850f85ec
   m_SerializeEntries:
   - m_GUID: c12f9de20232b6b41b63250712c16d31
-    m_Address: BasicWarrior
+    m_Address: Hero
     m_ReadOnly: 0
     m_SerializedLabels:
     - Player
@@ -31,7 +31,27 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: ab6bc118fb4a24e4ea0c6463f259ef1b
+    m_Address: BariHitEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a9bf85300d1d04e4a828a1ee04dd4f1b
+    m_Address: Bari
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 93dd3d1fc3a2cc544bb0f7a36fe07a0a
+    m_Address: KuhelmSkill
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32dc7db06d570d548ba5a9a9b73c2822
     m_Address: HitEffect
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 41f409696c0a8724da1ea4c3bb46e754
+    m_Address: HeroSkill
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cf8a0fb5f17ae694f80cd15f4cde660c
+    m_Address: Stage_1
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

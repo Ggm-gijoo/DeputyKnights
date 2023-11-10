@@ -28,6 +28,12 @@ public class SkillIconParents : MonoSingleton<SkillIconParents>
             int idx = i;
             skillIcons[idx].skillBtn.onClick.AddListener(() => skillIcons[idx].OnSkillActive(idx,
                 TeamManager.Instance.playerTeamList[idx].skillCool, TeamManager.Instance.playerTeamList[idx].coolDownSpeed));
+
+            TeamManager.Instance.playerTeamList[idx].resetCoolTimeEvents.AddListener(skillIcons[idx].ResetCoolTime);
+            TeamManager.Instance.playerTeamList[idx].reduceCoolTimeEvents.AddListener(skillIcons[idx].ReduceCoolTime);
+
+            StartCoroutine(skillIcons[idx].CoolDown(TeamManager.Instance.playerTeamList[idx].skillCool, TeamManager.Instance.playerTeamList[idx].coolDownSpeed));
+            StartCoroutine(TeamManager.Instance.playerTeamList[idx].ReduceCoolTime());
         }
     }
 }

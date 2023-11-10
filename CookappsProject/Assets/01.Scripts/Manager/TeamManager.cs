@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class TeamManager : MonoSingleton<TeamManager>
 {
     public List<PlayerCharBase> playerTeamList = new List<PlayerCharBase>();
-    public List<CharBase> enemyTeamList = new List<CharBase>();
+    public List<EnemyCharBase> enemyTeamList = new List<EnemyCharBase>();
 
     public UnityEvent onDieEvent = new UnityEvent();
     public UnityEvent OnHitEvent = new UnityEvent();
@@ -27,28 +27,24 @@ public class TeamManager : MonoSingleton<TeamManager>
     {
         for(int i = 0; i < playerTeamList.Count; i++)
         {
-            playerTeamList[i].transform.position = new Vector2(-5, playerTeamList.Count - 1 - i * 2f); 
+            playerTeamList[i].transform.position = new Vector2(-5, playerTeamList.Count - 1 - i * 1.5f); 
         }
         
         for(int i = 0; i < enemyTeamList.Count; i++)
         {
-            enemyTeamList[i].transform.position = new Vector2(5, enemyTeamList.Count - 1 - i * 2f);
+            enemyTeamList[i].transform.position = new Vector2(5, enemyTeamList.Count - 1 - i * 1.5f);
         }
     }
     public void SetTargetInit()
     {
         for(int i = 0; i < playerTeamList.Count; i++)
         {
-            playerTeamList[i].SetTarget(enemyTeamList[i % enemyTeamList.Count]);
+            playerTeamList[i].ResetTarget();
         }
         for (int i = 0; i < enemyTeamList.Count; i++)
         {
-            enemyTeamList[i].SetTarget(playerTeamList[i % playerTeamList.Count]);
+            enemyTeamList[i].ResetTarget();
         }
-    }
-    public void OnSynergy()
-    {
-
     }
     public void CheckAllDie()
     {

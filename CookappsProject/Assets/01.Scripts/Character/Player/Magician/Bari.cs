@@ -17,11 +17,12 @@ public class Bari : PlayerCharBase
 
     private IEnumerator OnAttack()
     {
-        BariProjectile clone = Managers.Pool.PoolManaging("BariAttack", transform.position, Quaternion.AngleAxis(-90,Vector2.right)).GetComponent<BariProjectile>();
+        BariProjectile clone = Managers.Pool.PoolManaging("BariAttack", transform.position, 
+            Quaternion.Euler(new Vector2(-90, -70))).GetComponent<BariProjectile>();
         clone.target = targetObject.transform;
         clone.origin = this;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.25f);
         isAct = false;
     }
 }

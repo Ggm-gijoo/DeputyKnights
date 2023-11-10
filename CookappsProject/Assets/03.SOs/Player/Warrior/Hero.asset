@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11382d84a6c2ca4e8f5ffadb40d4159, type: 3}
   m_Name: Hero
   m_EditorClassIdentifier: 
+  character: {fileID: 1144339955520039731, guid: c12f9de20232b6b41b63250712c16d31, type: 3}
   charName: "\uC6A9\uC0AC"
   charIcon: {fileID: 21300000, guid: 0ff5b28a9499eec4da15442ab9e14ea6, type: 3}
   skillIcon: {fileID: 21300000, guid: ae1d8ef7c30bba8458f75b201eacca22, type: 3}
   job: 1
   elemental: 1
-  hp: 500
+  hp: 300
   atk: 20
-  spd: 5
+  spd: 6
+  crit: 10
   skillCool: 5

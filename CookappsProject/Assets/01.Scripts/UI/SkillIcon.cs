@@ -49,5 +49,18 @@ public class SkillIcon : MonoBehaviour
 
         coolDownText.gameObject.SetActive(false);
         coolDownImg.gameObject.SetActive(false);
+
+        yield return null;
+        AutoSkillBtn.Instance.onSkillEndEvent.Invoke();
+    }
+
+    public void ResetCoolTime()
+    {
+        nowCooltime = 0.01f;
+    }
+
+    public void ReduceCoolTime(float value)
+    {
+        nowCooltime -= value;
     }
 }

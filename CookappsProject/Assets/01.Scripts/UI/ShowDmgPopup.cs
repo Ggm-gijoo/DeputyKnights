@@ -23,7 +23,7 @@ public class ShowDmgPopup : MonoSingleton<ShowDmgPopup>
         TextMeshProUGUI damageText = damageTMP.GetComponentInChildren<TextMeshProUGUI>();
 
 
-        damageText.text = Mathf.RoundToInt(damage).ToString();
+        damageText.text = Mathf.RoundToInt(-damage).ToString();
         if (isCrit)
         {
             damageText.color = Color.yellow;
@@ -31,6 +31,11 @@ public class ShowDmgPopup : MonoSingleton<ShowDmgPopup>
         else
         {
             damageText.color = Color.white;
+        }
+
+        if(damage < 0)
+        {
+            damageText.color = Color.green;
         }
 
         damageTMP.transform.position = damagedObj.transform.position;

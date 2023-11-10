@@ -7,8 +7,9 @@ public class CharBase : MonoBehaviour, IHittable
 {
     [HideInInspector] public bool isPlayer = false;
     [HideInInspector] public bool IsDead { get; protected set; } = false;
-    [HideInInspector] public float dealStack = 0;
-    [HideInInspector] public static float totalDealStack = 0;
+
+    [HideInInspector] public float mvpStack = 0;
+    [HideInInspector] public static float totalMvpStack = 0;
     [HideInInspector] public CharBase targetObject = null;
 
     public CharacterSO charSO;
@@ -17,6 +18,7 @@ public class CharBase : MonoBehaviour, IHittable
     [Header("도망 범위")]
     [SerializeField] protected float escapeDistance; //도망 범위
 
+    #region animation
     [Space]
     [Header("애니메이션 클립")]
     [SerializeField] private AnimationClip idleClip;
@@ -25,13 +27,20 @@ public class CharBase : MonoBehaviour, IHittable
     protected Animator anim;
     protected AnimatorOverrideController overrideController;
 
+    protected readonly int _attack = Animator.StringToHash("Attack");
+    protected readonly int _move = Animator.StringToHash("Move");
+    #endregion
+
     [HideInInspector] public float hp;
     [HideInInspector] public float atk;
     [HideInInspector] public float spd;
+    [HideInInspector] public float crit;
 
     protected bool isAct = false;
+    protected bool isFlip = false;
 
     protected Rigidbody2D rigid;
+    protected SpriteRenderer sprite;
     protected HPBar hpBar;
 
     private void Awake()
@@ -46,11 +55,14 @@ public class CharBase : MonoBehaviour, IHittable
     private void Update()
     {
         RestrictionPos();
+        SetFlip();
     }
 
+    #region Init
     protected virtual void Init()
     {
         rigid = GetComponent<Rigidbody2D>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
         hpBar = GetComponentInChildren<HPBar>();
 
@@ -66,13 +78,14 @@ public class CharBase : MonoBehaviour, IHittable
         if (isPlayer)
             TeamManager.Instance.playerTeamList.Add(GetComponent<PlayerCharBase>());
         else
-            TeamManager.Instance.enemyTeamList.Add(this);
+            TeamManager.Instance.enemyTeamList.Add(GetComponent<EnemyCharBase>());
     }
     private void SetStatus()
     {
         hp = charSO.Hp;
         atk = charSO.Atk;
         spd = charSO.Spd;
+        crit = charSO.Crit;
     }
     private void SetAnimation()
     {
@@ -86,36 +99,8 @@ public class CharBase : MonoBehaviour, IHittable
 
         anim.runtimeAnimatorController = overrideController;
     }
-
-    public void OnDamage(float damage, float critChance = 0, CharBase from = null)
-    {
-        if (IsDead) return;
-
-        float critRate = Random.Range(0f, 100f);
-        bool isCrit = critChance > critRate;
-
-        damage *= isCrit ? 1.5f : 1f;
-        hp -= damage;
-        ShowDmgPopup.Instance.ShowDmg(damage, gameObject, isCrit);
-
-        if (from != null)
-        {
-            from.dealStack += damage;
-            totalDealStack += damage;
-
-            TeamManager.Instance.OnHitEvent.Invoke();
-        }
-
-        hpBar.UpdateHpBar();
-
-        if (hp <= 0)
-        {
-            IsDead = true;
-            TeamManager.Instance.onDieEvent.Invoke();
-            StartCoroutine(OnDie());
-        }
-    }
-
+    #endregion
+    #region Act
     protected virtual IEnumerator SetAct()
     {
         while (!IsDead)
@@ -128,7 +113,7 @@ public class CharBase : MonoBehaviour, IHittable
 
             float targetDist = Vector2.Distance(targetObject.transform.position, transform.position);
 
-            switch(targetDist)
+            switch (targetDist)
             {
                 case float dist when dist < escapeDistance:
                     Escape();
@@ -147,13 +132,12 @@ public class CharBase : MonoBehaviour, IHittable
         rigid.velocity = Vector2.zero;
     }
 
-    protected virtual void Attack() 
-    {
-        rigid.velocity = Vector2.zero;
-    }
+    protected virtual void Attack(){}
     protected virtual void Chase() 
     {
+        anim.SetBool(_move, true);
         Vector2 dir = (targetObject.transform.position - transform.position).normalized;
+        isFlip = dir.x > 0;
         rigid.velocity = dir * spd;
     }
     protected virtual void Escape() 
@@ -162,28 +146,84 @@ public class CharBase : MonoBehaviour, IHittable
         {
             Attack();
             return;
-        }    
+        }
+        anim.SetBool(_move, true);
         Vector2 dir = (transform.position - targetObject.transform.position).normalized;
+        isFlip = dir.x < 0;
         rigid.velocity = dir * spd;
     }
 
     protected virtual IEnumerator OnDie()
     {
+        CinemachineCameraShaking.Instance.CameraShake(5, 0.1f);
         Managers.Pool.PoolManaging("DeathEffect", transform.position, Quaternion.Euler(Vector3.right * -90));
         yield return null;
 
         gameObject.SetActive(false);
     }
-
-    protected virtual void ResetTarget() { }
+    #endregion
+    #region Target
+    public virtual void ResetTarget() { }
     public void SetTarget(CharBase target) => targetObject = target;
-
+    #endregion
+    #region Restriction
     private void RestrictionPos()
     {
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -10f, 10f), Mathf.Clamp(transform.position.y, -3f, 3f));
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -9f, 9f), Mathf.Clamp(transform.position.y, -3f, 3f));
     }
     private bool IsCharacterInEdge()
     {
-        return Mathf.Abs(transform.position.x) > 9.5f || Mathf.Abs(transform.position.y) > 2.5f;
+        return Mathf.Abs(transform.position.x) > 8.5f || Mathf.Abs(transform.position.y) > 2.5f;
     }
+    #endregion
+
+    public virtual void OnDamage(float damage, float critChance = 0, CharBase from = null, string hitEffect = null)
+    {
+        if (IsDead) return;
+
+        float critRate = Random.Range(0f, 100f);
+        bool isCrit = critChance > critRate;
+
+        damage *= isCrit ? 1.5f : 1f;
+        hp -= damage;
+        ShowDmgPopup.Instance.ShowDmg(damage, gameObject, isCrit);
+        if (hitEffect == null)
+            hitEffect = "HitEffect";
+        Managers.Pool.PoolManaging(hitEffect, transform.position, Quaternion.AngleAxis(-90,Vector3.right));
+
+        if (from != null && from.isPlayer)
+        {
+            from.mvpStack += damage;
+            totalMvpStack += damage;
+
+            TeamManager.Instance.OnHitEvent.Invoke();
+        }
+
+        hpBar.UpdateHpBar();
+
+        if (hp <= 0)
+        {
+            IsDead = true;
+            TeamManager.Instance.onDieEvent.Invoke();
+            StartCoroutine(OnDie());
+        }
+    }
+    public virtual void OnHeal(float value, CharBase from = null)
+    {
+        if (IsDead) return;
+
+        hp += value;
+        if (hp > charSO.Hp)
+            hp = charSO.Hp;
+
+        ShowDmgPopup.Instance.ShowDmg(-value, gameObject);
+        if (from != null && from.isPlayer)
+        {
+            from.mvpStack += value;
+            totalMvpStack += value;
+        }
+
+        hpBar.UpdateHpBar();
+    }
+    private void SetFlip() => sprite.flipX = isFlip;
 }

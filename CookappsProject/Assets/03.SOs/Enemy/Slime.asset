@@ -18,7 +18,8 @@ MonoBehaviour:
   skillIcon: {fileID: 0}
   job: 0
   elemental: 0
-  hp: 150
-  atk: 10
-  spd: 5
+  hp: 200
+  atk: 20
+  spd: 4
+  crit: 0
   skillCool: 0

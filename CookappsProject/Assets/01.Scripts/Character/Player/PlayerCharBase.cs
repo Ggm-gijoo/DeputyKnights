@@ -5,16 +5,29 @@ using UnityEngine.Events;
 
 public class PlayerCharBase : CharBase
 {
+
+    #region Icon
     [HideInInspector] public Sprite charIcon;
     [HideInInspector] public Sprite skillIcon;
+    #endregion
+    #region skill
     [HideInInspector] public float skillCool;
     [HideInInspector] public float coolDownSpeed = 1f;
+    [HideInInspector] public float resetCoolTimeChance = 0f;
+    [HideInInspector] public float reduceCoolTimeValue = 0f;
+    #endregion
+
+    protected bool isUsedFirstSkill = false;
 
     protected CharacterJob job;
     protected CharacterElemental elemental;
 
     protected static Dictionary<CharacterJob, int> jobSynergyDict = new Dictionary<CharacterJob, int>();
     protected static Dictionary<CharacterElemental, int> elementalSynergyDict = new Dictionary<CharacterElemental, int>();
+    #region events
+    [HideInInspector] public UnityEvent<float> reduceCoolTimeEvents = new UnityEvent<float>();
+    [HideInInspector] public UnityEvent resetCoolTimeEvents = new UnityEvent();
+    #endregion
 
     protected override void Init()
     {
@@ -34,47 +47,91 @@ public class PlayerCharBase : CharBase
     private void SetSynergy()
     {
         if (jobSynergyDict.ContainsKey(job))
+        {
             jobSynergyDict[job]++;
+            Synergy();
+        }
         else
             jobSynergyDict.Add(job, 1);
     }
 
-    protected override void ResetTarget()
+    public override void ResetTarget()
     {
-        if (!targetObject.IsDead) return;
-
-        float dist = 100;
-
-        targetObject = null;
-        for (int i = 0; i < TeamManager.Instance.enemyTeamList.Count; i++)
+        if (targetObject != null && !targetObject.IsDead) return;
+        targetObject = CheckNearestEnemy();
+    }
+    public EnemyCharBase CheckNearestEnemy()
+    {
+        float distance = 100;
+        EnemyCharBase resultEnemy = null;
+        foreach(EnemyCharBase enemy in TeamManager.Instance.enemyTeamList)
         {
-            if (TeamManager.Instance.enemyTeamList[i].IsDead) continue;
+            if (enemy.IsDead) continue;
 
-            float targetDist = Vector2.Distance(TeamManager.Instance.enemyTeamList[i].transform.position, transform.position);
-            if (dist > targetDist)
+            float enemyDist = Vector2.Distance(enemy.transform.position, transform.position);
+            if (distance > enemyDist)
             {
-                dist = targetDist;
-                targetObject = TeamManager.Instance.enemyTeamList[i];
+                distance = enemyDist;
+                resultEnemy = enemy;
             }
+        }
+
+        return resultEnemy;
+    }
+
+    public IEnumerator ResetCoolTime()
+    {
+        yield return null;
+
+        if (resetCoolTimeChance <= 0) yield break;
+
+        if (resetCoolTimeChance > Random.Range(0f,1f))
+        {
+            resetCoolTimeEvents.Invoke();
+        }
+    }
+    public IEnumerator ReduceCoolTime()
+    {
+        yield return null;
+
+        if (reduceCoolTimeValue <= 0) yield break;
+        reduceCoolTimeEvents.Invoke(reduceCoolTimeValue);
+
+        if (jobSynergyDict[CharacterJob.Warrior] >= 2 && !isUsedFirstSkill)
+        {
+            isUsedFirstSkill = true;
+            reduceCoolTimeValue -= (skillCool * 0.3f) * (jobSynergyDict[CharacterJob.Warrior] - 1);
         }
     }
 
-    public virtual void Skill() { }
+    public virtual void Skill() 
+    {
+        if (IsDead) return;
+        StartCoroutine(ReduceCoolTime());
+        StartCoroutine(ResetCoolTime());
+    }
     protected void Synergy() 
     {
         switch(job)
         {
+            //전사 : 시작 쿨타임 30% 감소
             case CharacterJob.Warrior:
-                for (int i = 0; i < TeamManager.Instance.playerTeamList.Count; i++)
-                    TeamManager.Instance.playerTeamList[i].atk += TeamManager.Instance.playerTeamList[i].charSO.Atk * 0.1f;
+                foreach(var team in TeamManager.Instance.playerTeamList)
+                    team.reduceCoolTimeValue += skillCool * 0.3f;
                 break;
+            //마법사 : 스킬 쿨다운 25% 증가
             case CharacterJob.Magician:
-                for (int i = 0; i < TeamManager.Instance.playerTeamList.Count; i++)
-                    TeamManager.Instance.playerTeamList[i].coolDownSpeed += 0.25f;
+                foreach (var team in TeamManager.Instance.playerTeamList)
+                    team.coolDownSpeed += 0.25f;
                 break;
+            // 서포터 : 스킬 사용시 5% 확률로 쿨타임 초기화
             case CharacterJob.Supporter:
+                foreach (var team in TeamManager.Instance.playerTeamList)
+                {
+                    team.resetCoolTimeChance += 0.05f;
+                }
                 break;
-            case CharacterJob.Special:
+            case CharacterJob.Assassin:
                 break;
         }
 

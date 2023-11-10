@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11382d84a6c2ca4e8f5ffadb40d4159, type: 3}
   m_Name: Bari
   m_EditorClassIdentifier: 
+  character: {fileID: 1144339955520039731, guid: a9bf85300d1d04e4a828a1ee04dd4f1b, type: 3}
   charName: "\uBC14\uB9AC"
   charIcon: {fileID: 21300000, guid: 80607ade115e37b4eb72171dc4d7a52f, type: 3}
   skillIcon: {fileID: 21300000, guid: d2a8b5b2a9189ec45afed0bb457492b1, type: 3}
   job: 2
   elemental: 6
-  hp: 200
+  hp: 150
   atk: 30
-  spd: 3
+  spd: 7
+  crit: 15
   skillCool: 7

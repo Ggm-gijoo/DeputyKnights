@@ -22,15 +22,15 @@ public class MVPBar : MonoBehaviour
     public void SetCharIcon(int num) => charIcon.sprite = TeamManager.Instance.playerTeamList[num].charIcon;
     public void SetMvpBarValue(int num)
     {
-        if(CharBase.totalDealStack <= 0)
+        if(CharBase.totalMvpStack <= 0)
         {
             mvpBar.value = 0;
             return;
         }
-        float dealPercent = TeamManager.Instance.playerTeamList[num].dealStack / CharBase.totalDealStack;
+        float dealPercent = TeamManager.Instance.playerTeamList[num].mvpStack / CharBase.totalMvpStack;
         
         mvpBar.value = dealPercent;
-        dealTxt.text = $"{TeamManager.Instance.playerTeamList[num].dealStack}<size=80%>({(int)(dealPercent * 100)}%)";
+        dealTxt.text = $"{TeamManager.Instance.playerTeamList[num].mvpStack}<size=80%>({(int)(dealPercent * 100)}%)";
     }
 
 }

@@ -45,6 +45,8 @@ Library\Bee\artifacts\mvdfrm\Unity.TextMeshPro.ref.dll_4A5B02DEDB940168.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Timeline.Editor.ref.dll_C8BF959B21FAAFDF.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Timeline.ref.dll_F120A7CC9CFB2CF2.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VSCode.Editor.ref.dll_D22D9E199E54CE46.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.VisualEffectGraph.Editor.ref.dll_DAF69767FB93CC0F.mvfrm
+Library\Bee\artifacts\mvdfrm\Unity.VisualEffectGraph.Runtime.ref.dll_AD8185DC6B0FD9AC.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Core.Editor.ref.dll_FC307210FD20098A.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Core.ref.dll_0D56696115997497.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Flow.Editor.ref.dll_79615AC00BFE94CB.mvfrm

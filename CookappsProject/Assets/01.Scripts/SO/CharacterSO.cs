@@ -8,7 +8,7 @@ public enum CharacterJob
     Warrior,
     Magician,
     Supporter,
-    Special
+    Assassin
 }
 public enum CharacterElemental
 {
@@ -36,6 +36,7 @@ public class CharacterSO : ScriptableObject
     [SerializeField] private float hp;
     [SerializeField] private float atk;
     [SerializeField] private float spd;
+    [SerializeField] private float crit;
     [SerializeField] private float skillCool;
 
     public GameObject Character { get { return character; }}
@@ -50,5 +51,6 @@ public class CharacterSO : ScriptableObject
     public float Hp { get { return hp; }}
     public float Atk { get { return atk; }}
     public float Spd { get { return spd; }}
+    public float Crit { get { return crit; }}
     public float SkillCool { get { return skillCool; }}
 }
