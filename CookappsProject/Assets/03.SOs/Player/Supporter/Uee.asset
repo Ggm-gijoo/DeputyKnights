@@ -16,10 +16,15 @@ MonoBehaviour:
   charName: "\uC6B0\uC774"
   charIcon: {fileID: 0}
   skillIcon: {fileID: 21300000, guid: 76cd6a4098d4ec84ea5cb495cdc9eca5, type: 3}
+  skillName: "\uB3C4\uD30C\uBBFC \uBD84\uBE44\uC81C"
+  skillDesc: "\uBAA8\uB4E0 \uC544\uAD70 \uCCB4\uB825 \uC790\uC2E0 \uCCB4\uB825\uC758
+    20%\uB9CC\uD07C \uD68C\uBCF5, 3\uCD08\uAC04 \uBAA8\uB4E0 \uC544\uAD70 \uACF5\uACA9\uB825
+    20% \uC99D\uAC00"
   job: 3
   elemental: 1
-  hp: 100
+  hp: 70
   atk: 0
+  def: 5
   spd: 6
   crit: 0
   skillCool: 7.5

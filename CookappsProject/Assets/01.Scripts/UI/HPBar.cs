@@ -9,18 +9,19 @@ public class HPBar : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Image hpBar;
 
-    private void Start()
+    private void OnEnable()
     {
         character = GetComponentInParent<CharBase>();
-        Init();
+        StartCoroutine(Init());
     }
-    public void Init()
+    public IEnumerator Init()
     {
+        yield return null;
         hpBar.color = character.isPlayer ? Color.cyan : Color.magenta;
     }
 
     public void UpdateHpBar()
     {
-        slider.value = character.hp / character.charSO.Hp;
+        slider.value = character.hp / character.maxHp;
     }
 }

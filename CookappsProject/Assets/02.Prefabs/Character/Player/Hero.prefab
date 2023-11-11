@@ -83,7 +83,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1846122821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -192,24 +192,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8dec16f81dde04a8930ee8023d9bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 0
-  dealStack: 0
   targetObject: {fileID: 0}
   charSO: {fileID: 11400000, guid: 6b0af3f96f3be8e4e994d6077f3d6f2d, type: 2}
   attackDistance: 2
   escapeDistance: 0
-  idleClip: {fileID: 0}
-  moveClip: {fileID: 0}
-  attackClip: {fileID: 0}
+  isPlayer: 0
+  isAct: 0
+  isStun: 0
+  mvpStack: 0
+  idleClip: {fileID: 7400000, guid: 9d6390824f5f9b14cbd0d1ffc58d8237, type: 2}
+  moveClip: {fileID: 7400000, guid: 1b29ff83c4422dd4dba2a0eeec27affb, type: 2}
+  attackClip: {fileID: 7400000, guid: ea689e23a7164884a8e908054d20ad7c, type: 2}
+  maxHp: 0
   hp: 0
   atk: 0
+  def: 0
   spd: 0
+  crit: 0
   charIcon: {fileID: 0}
   skillIcon: {fileID: 0}
   skillCool: 0
   coolDownSpeed: 1
   resetCoolTimeChance: 0
   reduceCoolTimeValue: 0
+  playerDieEvents:
+    m_PersistentCalls:
+      m_Calls: []
   reduceCoolTimeEvents:
     m_PersistentCalls:
       m_Calls: []
@@ -337,10 +345,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 785135441, guid: ff9dada1fae6ba741962710ac046080b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -395,6 +403,10 @@ PrefabInstance:
     - target: {fileID: 2159556965325836787, guid: 1289c0bf47c92874b87551321b370c75, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2159556966076776555, guid: 1289c0bf47c92874b87551321b370c75, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 2159556966178917684, guid: 1289c0bf47c92874b87551321b370c75, type: 3}
       propertyPath: m_Name

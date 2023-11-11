@@ -16,10 +16,13 @@ MonoBehaviour:
   charName: "\uC2AC\uB77C\uC784"
   charIcon: {fileID: 0}
   skillIcon: {fileID: 0}
+  skillName: 
+  skillDesc: 
   job: 0
   elemental: 0
-  hp: 200
-  atk: 20
+  hp: 120
+  atk: 100
+  def: 20
   spd: 4
   crit: 0
   skillCool: 0

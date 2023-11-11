@@ -5,11 +5,6 @@ using UnityEngine.Events;
 
 public class CharBase : MonoBehaviour, IHittable
 {
-    [HideInInspector] public bool isPlayer = false;
-    [HideInInspector] public bool IsDead { get; protected set; } = false;
-
-    [HideInInspector] public float mvpStack = 0;
-    [HideInInspector] public static float totalMvpStack = 0;
     [HideInInspector] public CharBase targetObject = null;
 
     public CharacterSO charSO;
@@ -18,6 +13,17 @@ public class CharBase : MonoBehaviour, IHittable
     [Header("도망 범위")]
     [SerializeField] protected float escapeDistance; //도망 범위
 
+    #region boolean
+    [HideInInspector] public bool isPlayer = false;
+    [HideInInspector] public bool isAct = false;
+    [HideInInspector] public bool isStun = false;
+
+    [HideInInspector] public bool IsDead { get; protected set; } = false;
+    #endregion
+    #region mvp
+    [HideInInspector] public float mvpStack = 0;
+    [HideInInspector] public static float totalMvpStack = 0;
+    #endregion
     #region animation
     [Space]
     [Header("애니메이션 클립")]
@@ -30,14 +36,18 @@ public class CharBase : MonoBehaviour, IHittable
     protected readonly int _attack = Animator.StringToHash("Attack");
     protected readonly int _move = Animator.StringToHash("Move");
     #endregion
-
+    #region stat
+    [HideInInspector] public float maxHp;
     [HideInInspector] public float hp;
     [HideInInspector] public float atk;
+    [HideInInspector] public float def;
     [HideInInspector] public float spd;
     [HideInInspector] public float crit;
-
-    protected bool isAct = false;
+    #endregion
+    #region flip
+    private bool initFlip;
     protected bool isFlip = false;
+    #endregion
 
     protected Rigidbody2D rigid;
     protected SpriteRenderer sprite;
@@ -46,9 +56,6 @@ public class CharBase : MonoBehaviour, IHittable
     private void Awake()
     {
         Init();
-    }
-    private void Start()
-    {
         StartCoroutine(SetAct());
     }
 
@@ -66,12 +73,14 @@ public class CharBase : MonoBehaviour, IHittable
         anim = GetComponentInChildren<Animator>();
         hpBar = GetComponentInChildren<HPBar>();
 
+        initFlip = sprite.flipX;
+
         SetTeam();
         SetStatus();
         SetAnimation();
 
-        TeamManager.Instance.onDieEvent.RemoveListener(ResetTarget);
-        TeamManager.Instance.onDieEvent.AddListener(ResetTarget);
+        TeamManager.Instance.OnDieEvent.RemoveListener(ResetTarget);
+        TeamManager.Instance.OnDieEvent.AddListener(ResetTarget);
     }
     private void SetTeam()
     {
@@ -82,8 +91,10 @@ public class CharBase : MonoBehaviour, IHittable
     }
     private void SetStatus()
     {
-        hp = charSO.Hp;
+        maxHp = charSO.Hp;
+        hp = maxHp;
         atk = charSO.Atk;
+        def = charSO.Def;
         spd = charSO.Spd;
         crit = charSO.Crit;
     }
@@ -108,7 +119,7 @@ public class CharBase : MonoBehaviour, IHittable
             yield return null;
             rigid.velocity = Vector2.zero;
 
-            if (isAct) continue;
+            if (isAct || isStun) continue;
             if (targetObject == null) continue;
 
             float targetDist = Vector2.Distance(targetObject.transform.position, transform.position);
@@ -163,7 +174,7 @@ public class CharBase : MonoBehaviour, IHittable
     }
     #endregion
     #region Target
-    public virtual void ResetTarget() { }
+    public virtual void ResetTarget(CharBase origin = null) { }
     public void SetTarget(CharBase target) => targetObject = target;
     #endregion
     #region Restriction
@@ -185,6 +196,10 @@ public class CharBase : MonoBehaviour, IHittable
         bool isCrit = critChance > critRate;
 
         damage *= isCrit ? 1.5f : 1f;
+
+        float defPer = def / (def + 1);
+        damage *= 1 - defPer; 
+
         hp -= damage;
         ShowDmgPopup.Instance.ShowDmg(damage, gameObject, isCrit);
         if (hitEffect == null)
@@ -204,7 +219,9 @@ public class CharBase : MonoBehaviour, IHittable
         if (hp <= 0)
         {
             IsDead = true;
-            TeamManager.Instance.onDieEvent.Invoke();
+            TeamManager.Instance.OnDieEvent.Invoke(this);
+            if (isPlayer)
+                GetComponent<PlayerCharBase>().playerDieEvents.Invoke();
             StartCoroutine(OnDie());
         }
     }
@@ -213,8 +230,8 @@ public class CharBase : MonoBehaviour, IHittable
         if (IsDead) return;
 
         hp += value;
-        if (hp > charSO.Hp)
-            hp = charSO.Hp;
+        if (hp > maxHp)
+            hp = maxHp;
 
         ShowDmgPopup.Instance.ShowDmg(-value, gameObject);
         if (from != null && from.isPlayer)
@@ -225,5 +242,5 @@ public class CharBase : MonoBehaviour, IHittable
 
         hpBar.UpdateHpBar();
     }
-    private void SetFlip() => sprite.flipX = isFlip;
+    private void SetFlip() => sprite.flipX = isFlip != initFlip;
 }

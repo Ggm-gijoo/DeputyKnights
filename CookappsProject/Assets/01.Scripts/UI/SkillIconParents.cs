@@ -24,16 +24,20 @@ public class SkillIconParents : MonoSingleton<SkillIconParents>
         {
             skillIcons.Add(GetComponentsInChildren<SkillIcon>()[i]);
             skillIcons[i].SetSkillIcon(i);
+            skillIcons[i].SetSkillDesc(i);
 
             int idx = i;
-            skillIcons[idx].skillBtn.onClick.AddListener(() => skillIcons[idx].OnSkillActive(idx,
-                TeamManager.Instance.playerTeamList[idx].skillCool, TeamManager.Instance.playerTeamList[idx].coolDownSpeed));
+            PlayerCharBase team = TeamManager.Instance.playerTeamList[idx];
+            SkillIcon skillIcon = skillIcons[idx];
 
-            TeamManager.Instance.playerTeamList[idx].resetCoolTimeEvents.AddListener(skillIcons[idx].ResetCoolTime);
-            TeamManager.Instance.playerTeamList[idx].reduceCoolTimeEvents.AddListener(skillIcons[idx].ReduceCoolTime);
+            skillIcon.skillBtn.onClick.AddListener(() => skillIcon.OnSkillActive(idx, team.skillCool, team.coolDownSpeed));
 
-            StartCoroutine(skillIcons[idx].CoolDown(TeamManager.Instance.playerTeamList[idx].skillCool, TeamManager.Instance.playerTeamList[idx].coolDownSpeed));
-            StartCoroutine(TeamManager.Instance.playerTeamList[idx].ReduceCoolTime());
+            team.resetCoolTimeEvents.AddListener(skillIcon.ResetCoolTime);
+            team.reduceCoolTimeEvents.AddListener(skillIcon.ReduceCoolTime);
+            team.playerDieEvents.AddListener(skillIcon.DisableSkill);
+
+            StartCoroutine(skillIcon.CoolDown(team.skillCool, team.coolDownSpeed));
+            StartCoroutine(team.ReduceCoolTime());
         }
     }
 }

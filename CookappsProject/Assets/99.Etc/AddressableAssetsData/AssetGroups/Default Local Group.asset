@@ -54,6 +54,26 @@ MonoBehaviour:
     m_Address: Stage_1
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 07cd4fc6929b8214f881f7baaf643bdf
+    m_Address: Bari
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a3ef8b75f8a2e7c4fb855a1a0440a7c6
+    m_Address: Uee
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b0af3f96f3be8e4e994d6077f3d6f2d
+    m_Address: Hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f8fc43045eaefce47958269be5704067
+    m_Address: Kuhelm
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9a6e1324c646b8e42bc0f4c77d660398
+    m_Address: BariSkill
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 9c4cf7701d3a4e243a480196ef1b0071, type: 2}
   m_SchemaSet:

@@ -21,6 +21,11 @@ public class Kuhelm : PlayerCharBase
     private IEnumerator OnAttack()
     {
         Vector2 dir = (targetObject.transform.position - transform.position).normalized;
+        isFlip = dir.x > 0;
+
+        anim.SetBool(_move, false);
+        anim.SetTrigger(_attack);
+
         targetObject.OnDamage(atk, crit, this);
 
         yield return new WaitForSeconds(0.8f);

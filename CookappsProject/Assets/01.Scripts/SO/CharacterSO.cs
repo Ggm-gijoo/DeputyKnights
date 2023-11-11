@@ -30,11 +30,16 @@ public class CharacterSO : ScriptableObject
     [SerializeField] private Sprite charIcon;
     [SerializeField] private Sprite skillIcon;
 
+    [SerializeField] private string skillName;
+    [TextArea]
+    [SerializeField] private string skillDesc;
+
     [SerializeField] private CharacterJob job;
     [SerializeField] private CharacterElemental elemental;
 
     [SerializeField] private float hp;
     [SerializeField] private float atk;
+    [SerializeField] private float def;
     [SerializeField] private float spd;
     [SerializeField] private float crit;
     [SerializeField] private float skillCool;
@@ -45,11 +50,15 @@ public class CharacterSO : ScriptableObject
     public Sprite CharIcon { get { return charIcon; }}
     public Sprite SkillIcon { get { return skillIcon; }}
 
+    public string SkillName { get { return skillName; }}
+    public string SkillDesc { get { return skillDesc; }}
+
     public CharacterJob Job { get { return job; }}
     public CharacterElemental Elemental { get { return elemental; } }
 
     public float Hp { get { return hp; }}
     public float Atk { get { return atk; }}
+    public float Def { get { return def; }}
     public float Spd { get { return spd; }}
     public float Crit { get { return crit; }}
     public float SkillCool { get { return skillCool; }}

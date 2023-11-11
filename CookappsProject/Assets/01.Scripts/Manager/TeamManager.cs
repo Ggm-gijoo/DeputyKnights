@@ -8,8 +8,11 @@ public class TeamManager : MonoSingleton<TeamManager>
     public List<PlayerCharBase> playerTeamList = new List<PlayerCharBase>();
     public List<EnemyCharBase> enemyTeamList = new List<EnemyCharBase>();
 
-    public UnityEvent onDieEvent = new UnityEvent();
+    public UnityEvent<CharBase> OnDieEvent = new UnityEvent<CharBase>();
     public UnityEvent OnHitEvent = new UnityEvent();
+
+    private int enemyDeadCount = 0;
+    private int playerDeadCount = 0;
 
     private void Start()
     {
@@ -20,8 +23,8 @@ public class TeamManager : MonoSingleton<TeamManager>
         SetTeamPosition();
         SetTargetInit();
 
-        onDieEvent.RemoveListener(() => CheckAllDie());
-        onDieEvent.AddListener(() => CheckAllDie());
+        OnDieEvent.RemoveListener(CheckAllDie);
+        OnDieEvent.AddListener(CheckAllDie);
     }
     public void SetTeamPosition()
     {
@@ -46,28 +49,35 @@ public class TeamManager : MonoSingleton<TeamManager>
             enemyTeamList[i].ResetTarget();
         }
     }
-    public void CheckAllDie()
-    {
-        int enemyDeadCount = 0;
-        int playerDeadCount = 0;
+    public void CheckAllDie(CharBase character)
+    { 
+        if (character.isPlayer)
+        {
+            playerDeadCount++;
+            if (playerDeadCount >= playerTeamList.Count)
+                GameManager.Instance.Defeat(character.transform);
+        }
+        else
+        {
+            enemyDeadCount++;
+            if (enemyDeadCount >= enemyTeamList.Count)
+                GameManager.Instance.Victory(character.transform);
+        }
+    }
 
-        foreach(var player in playerTeamList)
+    public PlayerCharBase GetMVP()
+    {
+        PlayerCharBase resultChar = null;
+        float mvpCount = 0;
+
+        foreach(var team in playerTeamList)
         {
-            if (player.IsDead)
+            if(team.mvpStack >= mvpCount)
             {
-                playerDeadCount++;
-                if (playerDeadCount >= playerTeamList.Count)
-                    GameManager.Instance.Defeat();
+                resultChar = team;
+                mvpCount = team.mvpStack;
             }
         }
-        foreach(var enemy in enemyTeamList)
-        {
-            if (enemy.IsDead)
-            {
-                enemyDeadCount++;
-                if (enemyDeadCount >= enemyTeamList.Count)
-                    GameManager.Instance.Victory();
-            }
-        }
+        return resultChar;
     }
 }

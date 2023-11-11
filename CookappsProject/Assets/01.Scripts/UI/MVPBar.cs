@@ -30,7 +30,7 @@ public class MVPBar : MonoBehaviour
         float dealPercent = TeamManager.Instance.playerTeamList[num].mvpStack / CharBase.totalMvpStack;
         
         mvpBar.value = dealPercent;
-        dealTxt.text = $"{TeamManager.Instance.playerTeamList[num].mvpStack}<size=80%>({(int)(dealPercent * 100)}%)";
+        dealTxt.text = $"{(int)TeamManager.Instance.playerTeamList[num].mvpStack}<size=80%>({(int)(dealPercent * 100)}%)";
     }
 
 }

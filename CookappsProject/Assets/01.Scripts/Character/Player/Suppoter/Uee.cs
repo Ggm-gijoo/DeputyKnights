@@ -16,7 +16,7 @@ public class Uee : PlayerCharBase
         float hp = 1f;
         foreach(CharBase character in TeamManager.Instance.playerTeamList)
         {
-            float charHp = character.hp / character.charSO.Hp;
+            float charHp = character.hp / character.maxHp;
             if (charHp < hp)
             {
                 targetObject = character;
@@ -28,7 +28,7 @@ public class Uee : PlayerCharBase
             isAct = false;
             yield break;
         }
-        targetObject.OnHeal(charSO.Hp * 0.2f, this);
+        targetObject.OnHeal(maxHp * 0.2f, this);
         
         yield return new WaitForSeconds(1.5f);
         
@@ -47,7 +47,7 @@ public class Uee : PlayerCharBase
     {
         foreach(var team in TeamManager.Instance.playerTeamList)
         {
-            team.OnHeal(charSO.Hp * 0.2f, this);
+            team.OnHeal(maxHp * 0.2f, this);
             team.atk += team.charSO.Atk * 0.2f;
         }
 

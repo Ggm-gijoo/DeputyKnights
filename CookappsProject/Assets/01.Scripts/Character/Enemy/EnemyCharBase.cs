@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyCharBase : CharBase
 {
-    public override void ResetTarget()
+    public override void ResetTarget(CharBase origin = null)
     {
         if (targetObject != null && !targetObject.IsDead) return;
         targetObject = CheckNearestPlayer();

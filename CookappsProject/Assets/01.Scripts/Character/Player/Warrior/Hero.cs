@@ -16,6 +16,11 @@ public class Hero : PlayerCharBase
     private IEnumerator OnAttack()
     {
         Vector2 dir = (targetObject.transform.position - transform.position).normalized;
+        isFlip = dir.x > 0;
+
+        anim.SetBool(_move, false);
+        anim.SetTrigger(_attack);
+
         targetObject.OnDamage(atk, crit, this);
 
         yield return new WaitForSeconds(0.8f);
@@ -38,7 +43,7 @@ public class Hero : PlayerCharBase
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 7.5f, 1 << 7);
         foreach(var col in cols)
         {
-            col.GetComponent<IHittable>().OnDamage(atk * 2.5f, crit, this);
+            col.GetComponent<IHittable>().OnDamage(atk * 1.5f, crit, this);
         }
 
         yield return new WaitForSeconds(0.5f);

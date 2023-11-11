@@ -16,5 +16,6 @@ public class Base : MonoSingleton<Base>
 
     public virtual void Clear()
     {
+        GameManager.Instance.SetTimeScale(1f);
     }
 }
