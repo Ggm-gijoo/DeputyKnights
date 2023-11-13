@@ -7,12 +7,17 @@ public class Game : Base
     public override void Init()
     {
         base.Init();
-        StageSO stageSO = Managers.Resource.Load<StageSO>($"Stage_{stageIdx}");
-        foreach (var enemy in stageSO.EnemyList)
-            Instantiate(enemy.Character);
+
+        SetManager.Instance.SetFinalPos();
+        GameObject clone = Managers.Resource.Instantiate("HitEffect");
+        Managers.Pool.Push(clone.GetComponent<Poolable>());
     }
     public override void Clear()
     {
+        PlayerCharBase.jobSynergyDict.Clear();
+        PlayerCharBase.elementalSynergyDict.Clear();
 
+        foreach(Poolable pool in FindObjectsOfType<Poolable>())
+            Managers.Pool.Push(pool);
     }
 }

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11382d84a6c2ca4e8f5ffadb40d4159, type: 3}
+  m_Name: Gunner
+  m_EditorClassIdentifier: 
+  character: {fileID: 3908067912176828000, guid: 84037fd8c6138f24faa36653425742fb, type: 3}
+  charName: "\uAC70\uB108"
+  charIcon: {fileID: -1641144528, guid: dfc9ff41df23ed747b0d238917123d31, type: 3}
+  skillIcon: {fileID: 0}
+  skillName: "\uC815\uBCF4"
+  skillDesc: "\uC6D0\uAC70\uB9AC \uACF5\uACA9\uC744 \uC0AC\uC6A9\uD568"
+  job: 2
+  elemental: 2
+  hp: 100
+  atk: 150
+  def: 5
+  spd: 7
+  crit: 20
+  skillCool: 0

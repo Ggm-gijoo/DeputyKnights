@@ -33,7 +33,7 @@ public class BariProjectile : ProjectileObj
     {
         if(collision.gameObject.layer == 7)
         {
-            collision.GetComponent<IHittable>().OnDamage(origin.atk, origin.crit, origin, hitEffect);
+            collision.GetComponent<CharBase>().OnDamage(origin.atk, origin.crit, origin, hitEffect);
             Managers.Pool.Push(poolable);
         }
     }

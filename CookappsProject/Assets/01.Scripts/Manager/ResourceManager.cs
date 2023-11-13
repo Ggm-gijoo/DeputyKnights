@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class ResourceManager
@@ -35,6 +36,27 @@ public class ResourceManager
         }
 
         return GetResource<T>(path);
+    }
+
+    public List<T> LoadAssetAtLabel<T>(AssetLabelReference assetLabel)
+    {
+        IList<IResourceLocation> locations = null;
+        List<T> outPutList = new List<T>();
+
+        Addressables.LoadResourceLocationsAsync(assetLabel.labelString).Completed +=
+        (handle) =>
+        {
+            locations = handle.Result;
+            foreach (var location in locations)
+            {
+                Addressables.LoadAssetAsync<T>(location).Completed +=
+                (handle) =>
+                {
+                    outPutList.Add(handle.Result);
+                };
+            }
+        };
+        return outPutList;
     }
 
     /// <summary>

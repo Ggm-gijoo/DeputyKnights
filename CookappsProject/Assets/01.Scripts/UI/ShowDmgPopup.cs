@@ -10,7 +10,7 @@ public class ShowDmgPopup : MonoSingleton<ShowDmgPopup>
     [SerializeField]
     public GameObject displayDamageTMP = null;
 
-    private WaitForSeconds waitForHalfSeconds = new WaitForSeconds(0.5f);
+    private WaitForSeconds waitForSeconds = new WaitForSeconds(1f);
 
     public void ShowDmg(float damage, GameObject damagedObj, bool isCrit = false)
     {
@@ -50,9 +50,9 @@ public class ShowDmgPopup : MonoSingleton<ShowDmgPopup>
 
     private IEnumerator PoolDamageTMP(Poolable damageTMP, TextMeshProUGUI damageText)
     {
-        damageTMP.transform.DOScale(0.005f, 0.5f);
-        damageText.DOFade(0f, 0.5f);
-        yield return waitForHalfSeconds;
+        damageTMP.transform.DOScale(0.005f, 1f);
+        damageText.DOFade(0f, 1f);
+        yield return waitForSeconds;
         Managers.Pool.Push(damageTMP);
     }
 }

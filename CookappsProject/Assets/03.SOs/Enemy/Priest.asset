@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11382d84a6c2ca4e8f5ffadb40d4159, type: 3}
+  m_Name: Priest
+  m_EditorClassIdentifier: 
+  character: {fileID: 3908067912176828000, guid: 3c46816487593f5458ecd7632dce6690, type: 3}
+  charName: "\uD0C0\uB77D \uC0AC\uC81C"
+  charIcon: {fileID: 21300000, guid: c6a265f7c645b94408792b25d1dfb375, type: 3}
+  skillIcon: {fileID: 0}
+  skillName: "\uC815\uBCF4"
+  skillDesc: "\uB192\uC740 \uB0B4\uAD6C\uB3C4, \uB0AE\uC740 \uACF5\uACA9\uB825"
+  job: 1
+  elemental: 1
+  hp: 250
+  atk: 75
+  def: 20
+  spd: 2
+  crit: 0
+  skillCool: 0

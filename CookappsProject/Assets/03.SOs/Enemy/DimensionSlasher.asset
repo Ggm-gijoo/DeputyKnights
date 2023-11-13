@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11382d84a6c2ca4e8f5ffadb40d4159, type: 3}
+  m_Name: DimensionSlasher
+  m_EditorClassIdentifier: 
+  character: {fileID: 3908067912176828000, guid: 28cce0be9491fd24cb4b22b5cf19ad0d, type: 3}
+  charName: "\uCC28\uC6D0\uAC80\uADC0"
+  charIcon: {fileID: 21300000, guid: 805e6882e2d6a0e4fbe20420c513e66c, type: 3}
+  skillIcon: {fileID: 0}
+  skillName: "\uC815\uBCF4"
+  skillDesc: "\uAC00\uC7A5 \uBA40\uB9AC \uB5A8\uC5B4\uC9C4 \uC801\uC5D0\uAC8C \uC989\uC2DC
+    \uC774\uB3D9\uD568"
+  job: 4
+  elemental: 2
+  hp: 200
+  atk: 150
+  def: 7
+  spd: 5
+  crit: 10
+  skillCool: 0

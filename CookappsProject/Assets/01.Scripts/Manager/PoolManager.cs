@@ -14,7 +14,7 @@ public class PoolManager
 
         Stack<Poolable> _poolStack = new Stack<Poolable>();
 
-        public void Init(GameObject obj, int count = 10)
+        public void Init(GameObject obj, int count = 3)
         {
             Obj = obj;
             Root = new GameObject().transform;

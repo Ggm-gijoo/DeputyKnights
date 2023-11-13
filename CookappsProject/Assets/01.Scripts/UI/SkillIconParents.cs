@@ -30,7 +30,12 @@ public class SkillIconParents : MonoSingleton<SkillIconParents>
             PlayerCharBase team = TeamManager.Instance.playerTeamList[idx];
             SkillIcon skillIcon = skillIcons[idx];
 
+            skillIcon.skillBtn.onClick.RemoveListener(() => skillIcon.OnSkillActive(idx, team.skillCool, team.coolDownSpeed));
             skillIcon.skillBtn.onClick.AddListener(() => skillIcon.OnSkillActive(idx, team.skillCool, team.coolDownSpeed));
+
+            team.resetCoolTimeEvents.RemoveListener(skillIcon.ResetCoolTime);
+            team.reduceCoolTimeEvents.RemoveListener(skillIcon.ReduceCoolTime);
+            team.playerDieEvents.RemoveListener(skillIcon.DisableSkill);
 
             team.resetCoolTimeEvents.AddListener(skillIcon.ResetCoolTime);
             team.reduceCoolTimeEvents.AddListener(skillIcon.ReduceCoolTime);

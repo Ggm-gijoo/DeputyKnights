@@ -8,15 +8,23 @@ public class ResultPanel : MonoSingleton<ResultPanel>
 {
     [SerializeField] private Image charIcon;
     [SerializeField] private TextMeshProUGUI charName;
+    [SerializeField] private TextMeshProUGUI mvpValueText;
+    [SerializeField] private Slider mvpValue;
 
-    public void OnExit()
-    {
-        Managers.Scene.LoadScene(Define.Scene.Main);
-    }
+    [SerializeField] private TextMeshProUGUI mainText;
 
     public void SetMVPIcon()
     {
-        charIcon.sprite = TeamManager.Instance.GetMVP().charIcon;
-        charName.text = TeamManager.Instance.GetMVP().charSO.CharName;
+        PlayerCharBase mvp = TeamManager.Instance.GetMVP();
+
+        charIcon.sprite = mvp.charIcon;
+        charName.text = mvp.charSO.CharName;
+        mvpValueText.text = $"업무 성과| {(int)mvp.mvpStack}({(int)((mvp.mvpStack / CharBase.totalMvpStack) * 100)}%)";
+        mvpValue.value = mvp.mvpStack / CharBase.totalMvpStack;
+    }
+    public void SetMainText(bool result)
+    {
+        mainText.color = result ? Color.yellow : Color.blue;
+        mainText.text = result ? "VICTORY!" : "DEFEAT...";
     }
 }

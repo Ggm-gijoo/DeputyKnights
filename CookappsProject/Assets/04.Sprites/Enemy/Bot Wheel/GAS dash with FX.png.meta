@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,7 +115,154 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: GAS dash with FX_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 157
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdeb7c4154aaf7d429aca964c581d397
+      internalID: -510113977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GAS dash with FX_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 131
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65b049c529a1e6c4c8a6ee3898947be8
+      internalID: -1916325095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GAS dash with FX_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 105
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 741778483636da248ad5b35f5ec737d0
+      internalID: 886587157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GAS dash with FX_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 79
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ebb9eff390efc6419e410af7c798a78
+      internalID: -97560759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GAS dash with FX_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 53
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07a012ddcf9d9264dac397715baa7f45
+      internalID: -2043799416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GAS dash with FX_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 27
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2763a5ee3325c2b469c1a206559ba6a7
+      internalID: -275790142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GAS dash with FX_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 117
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ea4d5513b4c83e4fb75aee5ef8ce443
+      internalID: -1955056772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +273,14 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GAS dash with FX_5: -275790142
+      GAS dash with FX_2: 886587157
+      GAS dash with FX_1: -1916325095
+      GAS dash with FX_6: -1955056772
+      GAS dash with FX_4: -2043799416
+      GAS dash with FX_3: -97560759
+      GAS dash with FX_0: -510113977
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

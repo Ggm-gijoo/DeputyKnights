@@ -1,63 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1809831079
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1809831080}
-  - component: {fileID: 1809831081}
-  m_Layer: 0
-  m_Name: AtkCol
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1809831080
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809831079}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4809946333328936064}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1809831081
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809831079}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 2}
-  m_EdgeRadius: 0
 --- !u!1 &1846122821
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4809946333328936064}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1846122823
 SpriteRenderer:
@@ -173,7 +115,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1809831080}
   - {fileID: 6378807572747924745}
   - {fileID: 8925280585153340064}
   - {fileID: 1846122822}
@@ -192,17 +133,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c633432ee3d94f40821f4ae6e09b3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 0
-  mvpStack: 0
   targetObject: {fileID: 0}
+  settedPos: 1
   charSO: {fileID: 11400000, guid: a3ef8b75f8a2e7c4fb855a1a0440a7c6, type: 2}
   attackDistance: 10
   escapeDistance: 5
-  idleClip: {fileID: 0}
-  moveClip: {fileID: 0}
-  attackClip: {fileID: 0}
+  isPlayer: 0
+  isAct: 0
+  isStun: 0
+  mvpStack: 0
+  idleClip: {fileID: 7400000, guid: 1f1623ac5f9e4b44f83d224c89bb7f00, type: 2}
+  moveClip: {fileID: 7400000, guid: 8278adf7f7553dc4b86084794a565e9b, type: 2}
+  attackClip: {fileID: 7400000, guid: 56b396dd02ebb244b98a700e64f0e872, type: 2}
+  maxHp: 0
   hp: 0
   atk: 0
+  def: 0
   spd: 0
   crit: 0
   charIcon: {fileID: 0}
@@ -211,6 +157,9 @@ MonoBehaviour:
   coolDownSpeed: 1
   resetCoolTimeChance: 0
   reduceCoolTimeValue: 0
+  playerDieEvents:
+    m_PersistentCalls:
+      m_Calls: []
   reduceCoolTimeEvents:
     m_PersistentCalls:
       m_Calls: []
@@ -295,7 +244,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4809946333328936064}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!212 &652911754835501158
 SpriteRenderer:
@@ -338,9 +287,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7edea5b674c362a4c97e9d090fb7403d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -396,6 +345,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2159556966076776555, guid: 1289c0bf47c92874b87551321b370c75, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 2159556966178917684, guid: 1289c0bf47c92874b87551321b370c75, type: 3}
       propertyPath: m_Name
       value: HpBarCanvas
@@ -410,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2159556966178917688, guid: 1289c0bf47c92874b87551321b370c75, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2159556966178917688, guid: 1289c0bf47c92874b87551321b370c75, type: 3}
       propertyPath: m_AnchorMax.x

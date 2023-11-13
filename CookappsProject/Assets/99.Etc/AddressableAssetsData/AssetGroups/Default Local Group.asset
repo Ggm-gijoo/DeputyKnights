@@ -20,8 +20,7 @@ MonoBehaviour:
   - m_GUID: c12f9de20232b6b41b63250712c16d31
     m_Address: Hero
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Player
+    m_SerializedLabels: []
   - m_GUID: d52591951829e4a46b94ee3764385ea4
     m_Address: DeathEffect
     m_ReadOnly: 0
@@ -57,21 +56,53 @@ MonoBehaviour:
   - m_GUID: 07cd4fc6929b8214f881f7baaf643bdf
     m_Address: Bari
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Player
   - m_GUID: a3ef8b75f8a2e7c4fb855a1a0440a7c6
     m_Address: Uee
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Player
   - m_GUID: 6b0af3f96f3be8e4e994d6077f3d6f2d
     m_Address: Hero
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Player
   - m_GUID: f8fc43045eaefce47958269be5704067
     m_Address: Kuhelm
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Player
   - m_GUID: 9a6e1324c646b8e42bc0f4c77d660398
     m_Address: BariSkill
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10546c17b7006294daa4d4388fc1e55e
+    m_Address: Stage_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3777c820c63534a47bbaa4195d2d5f8d
+    m_Address: Stage_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d3fd0fcd328b7934891b0a7b700de832
+    m_Address: Stage_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b5435fd91d13b3a4aa7d8202703fbbfc
+    m_Address: Stage_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0524cb52944283a4e9f085185b6951c5
+    m_Address: SelectIcon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a044076e731ad3d4eb3147e21d733c25
+    m_Address: UeeHeal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1df4f637d95e0f54eb6dea759af8ee55
+    m_Address: Teleport
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

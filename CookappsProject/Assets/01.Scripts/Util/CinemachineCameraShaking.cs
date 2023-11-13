@@ -20,15 +20,17 @@ public class CinemachineCameraShaking : MonoSingleton<CinemachineCameraShaking>
     void Start()
     {
         mainCam = Camera.main;
+        VirtualCamera = null;
 
         if (VirtualCamera == null)
-            VirtualCamera = CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+            VirtualCamera = CinemachineCore.Instance?.GetActiveBrain(0)?.ActiveVirtualCamera?.VirtualCameraGameObject?.GetComponent<CinemachineVirtualCamera>();
 
         if (VirtualCamera != null)
+        {
             virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
-
-        virtualCameraNoise.m_AmplitudeGain = 0f;
-        virtualCameraNoise.m_FrequencyGain = 0f;
+            virtualCameraNoise.m_AmplitudeGain = 0f;
+            virtualCameraNoise.m_FrequencyGain = 0f;
+        }
     }
 
     public void ChangeCam()

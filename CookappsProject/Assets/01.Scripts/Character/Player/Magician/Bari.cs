@@ -7,7 +7,11 @@ public class Bari : PlayerCharBase
     protected override void Init()
     {
         base.Init();
+        Managers.Pool.Push(Managers.Resource.Instantiate("BariAttack").GetComponent<Poolable>());
+        Managers.Pool.Push(Managers.Resource.Instantiate("BariSkill").GetComponent<Poolable>());
+        Managers.Pool.Push(Managers.Resource.Instantiate("BariHitEffect").GetComponent<Poolable>());
     }
+
     protected override void Attack()
     {
         isAct = true;
@@ -24,7 +28,8 @@ public class Bari : PlayerCharBase
         anim.SetTrigger(_attack);
 
         BariProjectile clone = Managers.Pool.PoolManaging("BariAttack", transform.position, 
-            Quaternion.Euler(new Vector2(-90, -70))).GetComponent<BariProjectile>();
+        Quaternion.Euler(new Vector2(-90, -70))).GetComponent<BariProjectile>();
+
         clone.target = targetObject.transform;
         clone.origin = this;
 
@@ -42,10 +47,10 @@ public class Bari : PlayerCharBase
         if (targetObject == null) yield break;
         Managers.Pool.PoolManaging("BariSkill", targetObject.transform);
         CinemachineCameraShaking.Instance.CameraShake(2, 0.5f);
-        targetObject.OnDamage(atk * 3f, crit, this);
-        
+
         targetObject.isStun = true;
-        yield return new WaitForSeconds(2f);
+        targetObject.OnDamage(atk * 3f, crit, this);
+        yield return new WaitForSeconds(3f);
 
         if(targetObject != null)
             targetObject.isStun = false;

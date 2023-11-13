@@ -2,12 +2,34 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     [HideInInspector] public float timeScale = 1f;
     [SerializeField] private CinemachineVirtualCamera endVCam;
+
+    [Header("결과 패널")]
     [SerializeField] private GameObject resultPanel;
+    [Header("일시정지 패널")]
+    [SerializeField] private GameObject pausePanel;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (resultPanel.activeSelf) return;
+
+            if (!pausePanel.activeSelf)
+                ActivePausePanel();
+            else
+                DisablePausePanel();
+        }
+    }
 
     public void SetTimeScale(float value)
     {
@@ -16,16 +38,9 @@ public class GameManager : MonoSingleton<GameManager>
         Time.timeScale = value;
         timeScale = value;
     }
-    public void Victory(Transform vCamFollow = null)
+    public void Result(Transform vCamFollow = null, bool isVictory = true)
     {
-        Debug.Log("승리!");
-        StartCoroutine(ResultAction(vCamFollow, true));
-    }
-
-    public void Defeat(Transform vCamFollow = null)
-    {
-        Debug.Log("패배...");
-        StartCoroutine(ResultAction(vCamFollow, false));
+        StartCoroutine(ResultAction(vCamFollow, isVictory));
     }
     private IEnumerator ResultAction(Transform vCamFollow, bool isVictory)
     {
@@ -36,9 +51,30 @@ public class GameManager : MonoSingleton<GameManager>
         yield return new WaitForSecondsRealtime(2f);
 
         SetTimeScale(0f);
+
         resultPanel.SetActive(true);
         ResultPanel.Instance.SetMVPIcon();
+        ResultPanel.Instance.SetMainText(isVictory);
+        StageSelect.Instance.SetClear(Base.stageIdx - 1);
+    }
 
+    public void Restart() => Managers.Scene.LoadScene(Define.Scene.Ingame, Base.stageIdx);
+    public void Exit()
+    {
+        SetManager.Instance.Clear();
+        Managers.Scene.LoadScene(Define.Scene.Main);
+    }
+    public void Quit() => Application.Quit();
+
+    public void ActivePausePanel()
+    {
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+    }
+    public void DisablePausePanel()
+    {
+        Time.timeScale = timeScale;
+        pausePanel.SetActive(false);
     }
 
 }

@@ -23,19 +23,57 @@ public class TeamManager : MonoSingleton<TeamManager>
         SetTeamPosition();
         SetTargetInit();
 
+        SynergyIconSet.Instance.SetIcon();
+
         OnDieEvent.RemoveListener(CheckAllDie);
         OnDieEvent.AddListener(CheckAllDie);
     }
+
     public void SetTeamPosition()
     {
+        position getPos = position.middle;
+        float pos = 0;
+
+        int[] playerPosCount = new int[3];
+        int[] enemyPosCount = new int[3];
+
         for(int i = 0; i < playerTeamList.Count; i++)
         {
-            playerTeamList[i].transform.position = new Vector2(-5, playerTeamList.Count - 1 - i * 1.5f); 
+            getPos = playerTeamList[i].settedPos;
+            playerPosCount[(int)getPos]++;
+            switch (getPos)
+            {
+                case position.forward:
+                    pos = -3;
+                    break;
+                case position.middle:
+                    pos = -5;
+                    break;
+                case position.back:
+                    pos = -8;
+                    break;
+            }
+
+            playerTeamList[i].transform.position = new Vector2(pos, (playerPosCount[(int)getPos] - 1) * 1.5f);
         }
         
         for(int i = 0; i < enemyTeamList.Count; i++)
         {
-            enemyTeamList[i].transform.position = new Vector2(5, enemyTeamList.Count - 1 - i * 1.5f);
+            getPos = enemyTeamList[i].settedPos;
+            enemyPosCount[(int)getPos]++;
+            switch (getPos)
+            {
+                case position.forward:
+                    pos = 3;
+                    break;
+                case position.middle:
+                    pos = 5;
+                    break;
+                case position.back:
+                    pos = 8;
+                    break;
+            }
+            enemyTeamList[i].transform.position = new Vector2(pos, (enemyPosCount[(int)getPos] - 1) * 1.5f);
         }
     }
     public void SetTargetInit()
@@ -55,13 +93,13 @@ public class TeamManager : MonoSingleton<TeamManager>
         {
             playerDeadCount++;
             if (playerDeadCount >= playerTeamList.Count)
-                GameManager.Instance.Defeat(character.transform);
+                GameManager.Instance.Result(character.transform, false);
         }
         else
         {
             enemyDeadCount++;
             if (enemyDeadCount >= enemyTeamList.Count)
-                GameManager.Instance.Victory(character.transform);
+                GameManager.Instance.Result(character.transform, true);
         }
     }
 

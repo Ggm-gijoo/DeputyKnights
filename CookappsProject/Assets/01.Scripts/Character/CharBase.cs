@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class CharBase : MonoBehaviour, IHittable
 {
     [HideInInspector] public CharBase targetObject = null;
+    [HideInInspector] public position settedPos = position.middle;
 
     public CharacterSO charSO;
     [Header("공격 범위")]
@@ -46,7 +47,7 @@ public class CharBase : MonoBehaviour, IHittable
     #endregion
     #region flip
     private bool initFlip;
-    protected bool isFlip = false;
+    public bool isFlip = false;
     #endregion
 
     protected Rigidbody2D rigid;
@@ -74,6 +75,8 @@ public class CharBase : MonoBehaviour, IHittable
         hpBar = GetComponentInChildren<HPBar>();
 
         initFlip = sprite.flipX;
+        mvpStack = 0;
+        totalMvpStack = 0;
 
         SetTeam();
         SetStatus();
@@ -212,6 +215,11 @@ public class CharBase : MonoBehaviour, IHittable
             totalMvpStack += damage;
 
             TeamManager.Instance.OnHitEvent.Invoke();
+            if(isCrit)
+            {
+                if (from.GetComponent<PlayerCharBase>().critCoolTimeValue <= 0) return;
+                from.GetComponent<PlayerCharBase>().ReduceCoolTime(from.GetComponent<PlayerCharBase>().critCoolTimeValue);
+            }
         }
 
         hpBar.UpdateHpBar();

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da5c3857ee6f9c4b9e6a6a64a7ba880, type: 3}
   m_Name: Stage_1
   m_EditorClassIdentifier: 
-  enemyList:
-  - {fileID: 11400000, guid: c63817517f4b5aa44b14ba8e6f65c6c3, type: 2}
-  - {fileID: 11400000, guid: c63817517f4b5aa44b14ba8e6f65c6c3, type: 2}
-  - {fileID: 11400000, guid: c63817517f4b5aa44b14ba8e6f65c6c3, type: 2}
+  enemyPositionDict:
+    array:
+    - Key: 0
+      Value:
+      - {fileID: 11400000, guid: c63817517f4b5aa44b14ba8e6f65c6c3, type: 2}
+      - {fileID: 11400000, guid: c63817517f4b5aa44b14ba8e6f65c6c3, type: 2}
+      - {fileID: 11400000, guid: c63817517f4b5aa44b14ba8e6f65c6c3, type: 2}

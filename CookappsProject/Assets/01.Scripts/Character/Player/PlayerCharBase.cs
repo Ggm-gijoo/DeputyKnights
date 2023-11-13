@@ -15,13 +15,14 @@ public class PlayerCharBase : CharBase
     [HideInInspector] public float coolDownSpeed = 1f;
     [HideInInspector] public float resetCoolTimeChance = 0f;
     [HideInInspector] public float reduceCoolTimeValue = 0f;
+    [HideInInspector] public float critCoolTimeValue = 0f;
     #endregion
 
     protected CharacterJob job;
     protected CharacterElemental elemental;
 
-    protected static Dictionary<CharacterJob, int> jobSynergyDict = new Dictionary<CharacterJob, int>();
-    protected static Dictionary<CharacterElemental, int> elementalSynergyDict = new Dictionary<CharacterElemental, int>();
+    public static Dictionary<CharacterJob, int> jobSynergyDict = new Dictionary<CharacterJob, int>();
+    public static Dictionary<CharacterElemental, int> elementalSynergyDict = new Dictionary<CharacterElemental, int>();
     #region events
     [HideInInspector] public UnityEvent playerDieEvents = new UnityEvent();
     [HideInInspector] public UnityEvent<float> reduceCoolTimeEvents = new UnityEvent<float>();
@@ -133,18 +134,35 @@ public class PlayerCharBase : CharBase
                 break;
             //암살자 : 치명타시 쿨타임 10% 감소
             case CharacterJob.Assassin:
-                break;
+                foreach (var team in TeamManager.Instance.playerTeamList)
+                    team.critCoolTimeValue += 0.1f;
+                    break;
         }
     }
     protected void ElementalSynergy()
     {
         switch (elemental)
         {
+            //빛 : 팀 이동속도 10% 증가
             case CharacterElemental.Light:
+                foreach (var team in TeamManager.Instance.playerTeamList)
+                {
+                    team.spd += team.charSO.Spd * 0.1f;
+                }
                 break;
+            //어둠 : 팀 크리티컬 확률 10% 증가
             case CharacterElemental.Dark:
+                foreach (var team in TeamManager.Instance.playerTeamList)
+                {
+                    team.crit += team.charSO.Crit * 0.1f;
+                }
                 break;
+            //불 : 팀 공격력 10% 증가
             case CharacterElemental.Fire:
+                foreach (var team in TeamManager.Instance.playerTeamList)
+                {
+                    team.atk += team.charSO.Atk * 0.1f;
+                }
                 break;
             //물 : 팀 체력 10% 증가
             case CharacterElemental.Water:
@@ -154,9 +172,25 @@ public class PlayerCharBase : CharBase
                     team.hp = maxHp;
                 }    
                 break;
+            //대지 : 팀 방어력 10% 증가
             case CharacterElemental.Ground:
+                foreach (var team in TeamManager.Instance.playerTeamList)
+                {
+                    team.def += team.charSO.Def * 0.1f;
+                }
                 break;
+            //몽환 : 팀 모든 능력치 2.5% 증가
             case CharacterElemental.Arcane:
+                foreach (var team in TeamManager.Instance.playerTeamList)
+                {
+                    team.spd += team.charSO.Spd * 0.025f;
+                    team.atk += team.charSO.Atk * 0.025f;
+                    team.maxHp += team.charSO.Hp * 0.025f;
+                    team.def += team.charSO.Def * 0.025f;
+                    team.crit += team.charSO.Crit * 0.025f;
+
+                    hp = maxHp;
+                }
                 break;
             default:
                 break;

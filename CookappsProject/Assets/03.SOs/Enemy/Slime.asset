@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 3908067912176828000, guid: d2e5f92e0c146434a91f28723159baf5, type: 3}
   charName: "\uC2AC\uB77C\uC784"
-  charIcon: {fileID: 0}
+  charIcon: {fileID: -183631330, guid: 2bbfe76bc6f5f0647a25057cb0904593, type: 3}
   skillIcon: {fileID: 0}
-  skillName: 
-  skillDesc: 
-  job: 0
-  elemental: 0
-  hp: 120
+  skillName: "\uC815\uBCF4"
+  skillDesc: "\uC77C\uBC18\uC801\uC778 \uBAAC\uC2A4\uD130"
+  job: 1
+  elemental: 5
+  hp: 150
   atk: 100
-  def: 20
+  def: 10
   spd: 4
-  crit: 0
+  crit: 10
   skillCool: 0

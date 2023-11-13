@@ -10,6 +10,7 @@ public class Kuhelm : PlayerCharBase
     protected override void Init()
     {
         base.Init();
+        Managers.Pool.Push(Managers.Resource.Instantiate("KuhelmSkill").GetComponent<Poolable>());
     }
 
     protected override void Attack()
@@ -38,7 +39,6 @@ public class Kuhelm : PlayerCharBase
         base.Skill();
         StartCoroutine(OnSkill());
     }
-
     private IEnumerator OnSkill()
     {
         Managers.Pool.PoolManaging("KuhelmSkill", transform);
